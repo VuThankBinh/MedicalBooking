@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Màu nền của EditText -->
+    <corners android:radius="100dp" /> <!-- Điều này làm cho cả 4 góc trở nên bo tròn -->
+</shape>

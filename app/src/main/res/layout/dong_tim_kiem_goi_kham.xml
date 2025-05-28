@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/botron_img"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:background="@drawable/anhnengoi"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tensp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gói khám tiểu đường"
+                android:textColor="#1E5DFE"
+                android:textStyle="bold"
+                android:textSize="14dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_7"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phòng khám đa khoa Hưng Yên"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/icon_8"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="700.00đ"
+                    android:textStyle="bold"
+                    android:textColor="#EAA000"
+                    android:textSize="13sp"
+                    android:layout_marginLeft="5sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Xem chi tiết"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:backgroundTint="#D9D9D9" />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="12dp"
+            android:text="Đặt lịch ngay"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2196F3" />
+    </LinearLayout>
+</LinearLayout>

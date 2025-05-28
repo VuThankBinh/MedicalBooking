@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/ic_trangchu"
+        android:title="Trang chủ"/>
+    <item android:id="@+id/nav_hoso"
+        android:icon="@drawable/ic_ho_so"
+        android:title="Hồ sơ"/>
+    <item android:id="@+id/nav_phieukham"
+        android:icon="@drawable/ic_phieu_kham"
+        android:title="Phiếu khám"/>
+    <item android:id="@+id/nav_thongbao"
+        android:icon="@drawable/ic_thong_bao"
+        android:title="Thông báo"/>
+    <item android:id="@+id/nav_taikhoan"
+        android:icon="@drawable/ic_tai_khoan"
+        android:title="Tài khoản"/>
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/botron_img"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/img_mail"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông báo về lịch đặt khám của bạn"
+                android:textColor="#1E5DFE"
+                android:textStyle="bold"
+                android:textSize="14dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phòng khám đa khoa Hưng Yên đã duyệt lịch đặt khám của bạn vui lòng có mặt đúng giờ mà bạn đã đặt lịch."
+                android:textSize="12sp"
+                android:layout_marginLeft="2sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

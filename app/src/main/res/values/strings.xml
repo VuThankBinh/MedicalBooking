@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MadicalBooking</string>
+    <string-array name="gioi_tinh_array">
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Khác</item>
+    </string-array>
+
+</resources>
