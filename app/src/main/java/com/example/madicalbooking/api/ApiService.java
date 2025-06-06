@@ -14,6 +14,12 @@ import com.example.madicalbooking.api.models.TokenResponse;
 import com.example.madicalbooking.api.models.VerifyOtpRequest;
 import com.example.madicalbooking.api.models.ChangePasswordRequest;
 import com.example.madicalbooking.api.models.UpdateProfileRequest;
+import com.example.madicalbooking.api.models.BacSiResponse;
+import com.example.madicalbooking.api.models.KhoaResponse;
+import com.example.madicalbooking.api.models.ThongBaoResponse;
+import com.example.madicalbooking.api.models.ThongBaoRequest;
+import com.example.madicalbooking.model.ApiResponse;
+import com.example.madicalbooking.model.PhieuKham;
 
 import java.util.List;
 
@@ -68,4 +74,25 @@ public interface ApiService {
 
     @PUT("api/auth/update-profile")
     Call<Void> updateProfile(@Body UpdateProfileRequest request);
+
+    @GET("api/dang-ky-goi-kham/user/{maHoSo}/trang-thai/{trangThai}")
+    Call<List<PhieuKham>> getPhieuKham(
+        @Path("maHoSo") String maHoSo,
+        @Path("trangThai") String trangThai
+    );
+
+    @GET("/api/bac-si")
+    Call<List<BacSiResponse>> getBacSiAll();
+
+    @GET("/api/khoa/{id}")
+    Call<KhoaResponse> getKhoaById(@Path("id") int id);
+
+    @GET("/api/bac-si/{id}")
+    Call<BacSiResponse> getBacSiById(@Path("id") int id);
+
+    @GET("/api/notifications/user/{userId}")
+    Call<List<ThongBaoResponse>> getThongBaoByUserId(@Path("userId") int userId);
+
+    @POST("/api/notifications")
+    Call<ThongBaoResponse> sendNotification(@Body ThongBaoRequest thongBaoRequest);
 }

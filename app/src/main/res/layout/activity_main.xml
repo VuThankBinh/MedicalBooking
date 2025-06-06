@@ -7,7 +7,8 @@
     android:background="#f5f5f2">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,7 +146,7 @@
                                         android:textAlignment="center"
                                         android:textSize="18dp"
                                         android:textColor="@color/black"
-                                        android:text="Gọi video với bác sĩ"/>
+                                        android:text="Đặt lịch tư vấn bác sĩ"/>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -211,6 +212,7 @@
                     android:layout_marginLeft="100sp"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/BacSiRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

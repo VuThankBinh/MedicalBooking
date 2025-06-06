@@ -40,13 +40,15 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_9"/>
+
                 <TextView
+                    android:id="@+id/tvKhoa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Khoa nhi"
                     android:layout_gravity="center"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="5sp"/>
+                    android:layout_marginLeft="5sp"
+                    android:text="Khoa nhi"
+                    android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

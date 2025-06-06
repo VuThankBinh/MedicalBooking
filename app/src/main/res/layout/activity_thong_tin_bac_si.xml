@@ -1,178 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".thong_tin_bac_si">
+    android:background="#f5f5f2">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:orientation="vertical"
-        android:background="#D0DDFF">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/black"
-                android:background="@drawable/ic_left"/>
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_left"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin bác sĩ"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgBacSi"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:background="@drawable/botron_img"/>
+
+            <TextView
+                android:id="@+id/tvTenBacSi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                app:cardCornerRadius="50dp">
-                <ImageView
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:src="@drawable/nenbacsi">
-                </ImageView>
-            </androidx.cardview.widget.CardView>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvChuyenMon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:textColor="#666666"/>
+
+            <TextView
+                android:id="@+id/tvKhoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:textColor="#666666"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin liên hệ"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
                 <TextView
-                    android:id="@+id/tensp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ths BS.Nguyễn Đức Bảo"
-                    android:textColor="#1E5DFE"
-                    android:textStyle="bold"
-                    android:textSize="16dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:text="Email:"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chuyên trị:"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hen suyễn, ho kéo dài ở trẻ."
-                        android:textSize="14sp"
-                        android:layout_marginLeft="5sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lịch khám:"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thứ 2,3,4,5,6"
-                        android:textSize="14sp"
-                        android:layout_marginLeft="5sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giá khám:"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="200.000đ"
-                        android:textSize="14sp"
-                        android:layout_marginLeft="5sp"/>
-                </LinearLayout>
+                    android:layout_marginLeft="8dp"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số điện thoại:"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvSoDienThoai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ:"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvDiaChi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin chuyên môn"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số năm kinh nghiệm:"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvSoNamKinhNghiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số giấy phép:"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvSoGiayPhep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnDatLich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đặt lịch khám"
+                android:textColor="@color/white"
+                android:backgroundTint="#4076FF"
+                android:layout_marginTop="24dp"/>
+
         </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="THÔNG TIN BÁC SĨ"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bác sĩ Nguyễn Đức Bảo đang là một trong các bác sĩ chuyên khoa nhi giỏi và được rất nhiều phụ huynh quan tâm và lựa chọn trên ứng dụng MedicalBooking.
-        Bác sĩ Nguyễn Đức Bảo đã có nhiều năm kinh nghiệm khám, chuẩn đoán điều trị nhiều bệnh lý ở trẻ em."
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quá trình công tác:"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2017- Hiện tại: Bệnh viện đa khoa Hưng Yên"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quá trình học tập:"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tốt nghiệp Đại học Y Hà Nội"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
-    <Button
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Tư vấn ngay"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#2196F3" />
+    </ScrollView>
 </LinearLayout>

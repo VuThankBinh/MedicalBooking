@@ -75,9 +75,18 @@
             android:exported="false" />
         <activity
             android:name=".thanh_toan"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="demozpdk" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity android:name=".resetPassActivity"
             android:exported="false" />
         <activity
             android:name=".thong_tin_bac_si"
@@ -103,10 +112,14 @@
         <activity
             android:name=".Dang_nhap"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data
+                    android:host="app"
+                    android:scheme="demozpdk" />
             </intent-filter>
         </activity>
     </application>

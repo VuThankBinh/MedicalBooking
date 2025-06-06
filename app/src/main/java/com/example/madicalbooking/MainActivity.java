@@ -11,12 +11,15 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.madicalbooking.adapter.GoiKhamAdapter;
+import com.example.madicalbooking.adapter.BacSiAdapter;
 import com.example.madicalbooking.adapter.HoSoBenhNhanAdapter;
 import com.example.madicalbooking.api.RetrofitClient;
 import com.example.madicalbooking.api.models.GoiKhamResponse;
+import com.example.madicalbooking.api.models.BacSiResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,8 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     RecyclerView GoiKhamRecyclerView;
-    GoiKhamAdapter adapter;
+    RecyclerView BacSiRecyclerView;
+    GoiKhamAdapter goiKhamAdapter;
+    BacSiAdapter bacSiAdapter;
     List<GoiKhamResponse> GoiKhamList;
+    List<BacSiResponse> BacSiList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +43,20 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+
+        // Khởi tạo RecyclerView cho gói khám
         GoiKhamRecyclerView = findViewById(R.id.GoiKhamRecyclerView);
         GoiKhamRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+        // Khởi tạo RecyclerView cho bác sĩ
+        BacSiRecyclerView = findViewById(R.id.BacSiRecyclerView);
+        BacSiRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
+        // Khởi tạo danh sách
+        GoiKhamList = new ArrayList<>();
+        BacSiList = new ArrayList<>();
+
         bottomNavigationView = findViewById(R.id.navView);
-        // Thiết lập item được chọn là Practice
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -64,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     return true;
-                }else if (itemId == R.id.nav_taikhoan) {
+                } else if (itemId == R.id.nav_taikhoan) {
                     Intent intent = new Intent(MainActivity.this, thong_tin_tai_khoan.class);
                     startActivity(intent);
                     finish();
@@ -73,8 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         getGoiKham();
+        getBacSi();
     }
+
     private void getGoiKham() {
         RetrofitClient
                 .getInstance()
@@ -88,23 +107,16 @@ public class MainActivity extends AppCompatActivity {
                             String json = gson.toJson(response.body());
                             System.out.println("trả về: "+json);
                             GoiKhamList = response.body();
-                            // Khởi tạo adapter
-                            adapter = new GoiKhamAdapter(MainActivity.this, GoiKhamList, new GoiKhamAdapter.OnGoiKhamClickListener() {
+                            goiKhamAdapter = new GoiKhamAdapter(MainActivity.this, GoiKhamList, new GoiKhamAdapter.OnGoiKhamClickListener() {
                                 @Override
                                 public void GoiKhamClickListener(GoiKhamResponse goiKham) {
-                                    // Xử lý sự kiện click, ví dụ:
-//                                    Toast.makeText(MainActivity.this, "Bạn đã chọn: " + goiKham.getTenGoi(), Toast.LENGTH_SHORT).show();
-
-                                    // Hoặc chuyển sang màn hình chi tiết:
                                     Intent intent = new Intent(MainActivity.this, thong_tin_goi_kham.class);
                                     intent.putExtra("goiKhamId", goiKham.getMaGoi());
                                     startActivity(intent);
                                 }
                             });
-
-                            GoiKhamRecyclerView.setAdapter(adapter);
-                        }
-                        else {
+                            GoiKhamRecyclerView.setAdapter(goiKhamAdapter);
+                        } else {
                             Toast.makeText(MainActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -112,9 +124,40 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<List<GoiKhamResponse>> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Lỗi gọi API: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
     }
 
+    private void getBacSi() {
+        RetrofitClient
+                .getInstance()
+                .getApi()
+                .getBacSiAll()
+                .enqueue(new Callback<List<BacSiResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<BacSiResponse>> call, Response<List<BacSiResponse>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            Gson gson = new Gson();
+                            String json = gson.toJson(response.body());
+                            System.out.println("Danh sách bác sĩ: " + json);
+                            BacSiList = response.body();
+                            bacSiAdapter = new BacSiAdapter(MainActivity.this, BacSiList, new BacSiAdapter.OnBacSiClickListener() {
+                                @Override
+                                public void onBacSiClick(BacSiResponse bacSi) {
+                                    // TODO: Xử lý sự kiện click vào bác sĩ
+                                    Toast.makeText(MainActivity.this, "Bạn đã chọn bác sĩ: " + bacSi.getHoTen(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            BacSiRecyclerView.setAdapter(bacSiAdapter);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<BacSiResponse>> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Lỗi gọi API: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

@@ -78,8 +78,10 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation(fileTree(mapOf("dir" to "D:\\zalopay", "include" to listOf("*.aar", "*.jar"), "exclude" to listOf(""))))
 
 
+    implementation("commons-codec:commons-codec:1.14")
 
 
     androidTestImplementation(libs.ext.junit)
