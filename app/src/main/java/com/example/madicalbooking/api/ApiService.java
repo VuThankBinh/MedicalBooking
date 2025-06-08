@@ -1,6 +1,7 @@
 package com.example.madicalbooking.api;
 
 import com.example.madicalbooking.api.models.GoiKhamResponse;
+import com.example.madicalbooking.api.models.GoiKhamTrucTiepResponse;
 import com.example.madicalbooking.api.models.HoSoBenhNhanResponse;
 import com.example.madicalbooking.api.models.HoSoBenhNhanRequest;
 import com.example.madicalbooking.api.models.LoginRequest;
@@ -11,6 +12,7 @@ import com.example.madicalbooking.api.models.RegisterRequest;
 import com.example.madicalbooking.api.models.RegisterResponse;
 import com.example.madicalbooking.api.models.ResetPasswordRequest;
 import com.example.madicalbooking.api.models.TokenResponse;
+import com.example.madicalbooking.api.models.VaccineResponse;
 import com.example.madicalbooking.api.models.VerifyOtpRequest;
 import com.example.madicalbooking.api.models.ChangePasswordRequest;
 import com.example.madicalbooking.api.models.UpdateProfileRequest;
@@ -57,16 +59,16 @@ public interface ApiService {
     @POST("api/hoso-benh-nhan")
     Call<HoSoBenhNhanResponse> createHoSoBenhNhan( @Body HoSoBenhNhanRequest hoSoBenhNhanRequest);
 
-    @GET("/api/hoso-benh-nhan/nguoi-dung/{nguoi_dung_id}")
+    @GET("api/hoso-benh-nhan/nguoi-dung/{nguoi_dung_id}")
     Call<List<HoSoBenhNhanResponse>> getHoSoBenhNhanByNguoiDungId(@Path("nguoi_dung_id") String nguoi_dung_id);
 
-    @DELETE("/api/hoso-benh-nhan/{id}")
+    @DELETE("api/hoso-benh-nhan/{id}")
     Call<Void> deleteHoSoBenhNhan(@Path("id") int id);
 
-    @GET("/api/goi-kham")
+    @GET("api/goi-kham")
     Call<List<GoiKhamResponse>> getGoiKhamAll();
 
-    @GET("/api/goi-kham/{id}")
+    @GET("api/goi-kham/{id}")
     Call<GoiKhamResponse> getGoiKhamDetail(@Path("id") int id);
 
     @POST("api/auth/change-password")
@@ -81,18 +83,30 @@ public interface ApiService {
         @Path("trangThai") String trangThai
     );
 
-    @GET("/api/bac-si")
+    @GET("api/bac-si")
     Call<List<BacSiResponse>> getBacSiAll();
 
-    @GET("/api/khoa/{id}")
+    @GET("api/khoa/{id}")
     Call<KhoaResponse> getKhoaById(@Path("id") int id);
 
-    @GET("/api/bac-si/{id}")
+    @GET("api/bac-si/{id}")
     Call<BacSiResponse> getBacSiById(@Path("id") int id);
 
-    @GET("/api/notifications/user/{userId}")
+    @GET("api/notifications/user/{userId}")
     Call<List<ThongBaoResponse>> getThongBaoByUserId(@Path("userId") int userId);
 
-    @POST("/api/notifications")
+    @POST("api/notifications")
     Call<ThongBaoResponse> sendNotification(@Body ThongBaoRequest thongBaoRequest);
+
+    @GET("api/goi-kham-truc-tiep")
+    Call<List<GoiKhamTrucTiepResponse>> getGoiKhamTrucTiep();
+
+    @GET("api/goi-kham-truc-tiep/{id}")
+    Call<GoiKhamTrucTiepResponse> getGoiKhamTrucTiepDetail(@Path("id") int id);
+
+    @GET("api/hoso-benh-nhan/{id}")
+    Call<HoSoBenhNhanResponse> getHoSoBenhNhanDetail(@Path("id") int id);
+
+    @GET("api/vaccines")
+    Call<List<VaccineResponse>> getVaccines();
 }

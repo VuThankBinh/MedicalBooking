@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.madicalbooking.adapter.GoiKhamAdapter;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     BacSiAdapter bacSiAdapter;
     List<GoiKhamResponse> GoiKhamList;
     List<BacSiResponse> BacSiList;
+    EditText TimKiem;
+    LinearLayout datlichtiem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        TimKiem = findViewById(R.id.TimKiem);
+        TimKiem.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, tim_kiem_goi_kham.class);
+            startActivity(intent);
+        });
+        datlichtiem=findViewById(R.id.datlichtiem);
+        datlichtiem.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, dat_lich_tiem_chung.class);
+            startActivity(intent);
+        });
 
         // Khởi tạo RecyclerView cho gói khám
         GoiKhamRecyclerView = findViewById(R.id.GoiKhamRecyclerView);

@@ -27,6 +27,8 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +50,6 @@ public class thanh_toan extends AppCompatActivity {
     private String userId;
     SharedPreferences sharedPreferences;
     ImageView back;
-    int goiKhamId=0;
     Intent intent;
     Button btnXacNhan;
     String phuongThucThanhToan="";
@@ -143,7 +144,6 @@ public class thanh_toan extends AppCompatActivity {
                     thanhToanMoMo();
                     break;
                 case "ZaloPay":
-                    System.out.println("zalo: xádasd");
                     System.out.println("giaGoi: "+giaGoi.replace(".",""));
                     thanhToanZaloPay(giaGoi);
                     break;
@@ -557,9 +557,6 @@ public class thanh_toan extends AppCompatActivity {
                 Log.e("DangKyGoiKham", "Missing data");
                 return;
             }
-            Intent intent1=getIntent();
-            goiKhamId1=intent1.getIntExtra("goiKhamId",0);
-            System.out.println("goiKhamId: "+ goiKhamId);
 
             // Parse JSON từ goiKhamJson
             JSONObject goiKhamObj = new JSONObject(goiKhamJson);
@@ -584,24 +581,53 @@ public class thanh_toan extends AppCompatActivity {
             String maHoSoStr = getValueFromString(cleanHoSo, "maHoSo");
             String nguoiDungIdStr = getValueFromString(cleanHoSo, "nguoiDungId");
             int maHoSo = maHoSoStr != null ? Integer.parseInt(maHoSoStr) : 0;
-            int maGoi = 1; // Mặc định là 1 vì không có trong JSON
 
             // Tạo ngày đăng ký hiện tại
             String ngayDangKy = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                     .format(new java.util.Date());
 
             // Định dạng lại ngày thực hiện
-            if (ngayThucHien != null && ngayThucHien.contains("/")) {
-                String[] parts = ngayThucHien.split("/");
-                if (parts.length == 3) {
-                    ngayThucHien = parts[2] + "-" + parts[1] + "-" + parts[0];
+            if (ngayThucHien != null) {
+                try {
+                    // Xử lý trường hợp ngày có định dạng "Thứ năm, dd/MM/yyyy"
+                    if (ngayThucHien.contains("Thứ") && ngayThucHien.contains("/")) {
+                        // Tách lấy phần ngày tháng năm
+                        String[] parts = ngayThucHien.split(",");
+                        if (parts.length > 1) {
+                            String datePart = parts[1].trim();
+                            String[] dateParts = datePart.split("/");
+                            if (dateParts.length == 3) {
+                                // Chuyển từ dd/MM/yyyy sang yyyy-MM-dd
+                                ngayThucHien = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+                            }
+                        }
+                    }
+                    // Nếu ngày có định dạng dd/MM/yyyy
+                    else if (ngayThucHien.contains("/")) {
+                        String[] parts = ngayThucHien.split("/");
+                        if (parts.length == 3) {
+                            ngayThucHien = parts[2] + "-" + parts[1] + "-" + parts[0];
+                        }
+                    }
+                    
+                    // Đảm bảo định dạng cuối cùng là yyyy-MM-dd
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = inputFormat.parse(ngayThucHien);
+                    ngayThucHien = outputFormat.format(date);
+                    
+                    Log.d("DangKyGoiKham", "Ngày sau khi xử lý: " + ngayThucHien);
+                } catch (Exception e) {
+                    Log.e("DangKyGoiKham", "Lỗi định dạng ngày: " + e.getMessage());
                 }
             }
-
+            Intent intent = getIntent();
+            int goiKhamId = intent.getIntExtra("goiKhamid", -1);
+            System.out.println("goiKhamId TT: "+goiKhamId);
             System.out.println("lấy ra mã hồ sơ và mã gói");
             Log.d("DangKyGoiKham", "Thông tin đăng ký: " +
                     "maHoSo=" + maHoSo +
-                    ", maGoi=" + maGoi +
+                    ", maGoi=" + goiKhamId +
                     ", ngayDangKy=" + ngayDangKy +
                     ", ngayThucHien=" + ngayThucHien +
                     ", status=" + status +
@@ -620,6 +646,7 @@ public class thanh_toan extends AppCompatActivity {
                 gioKham,
                 userId
             );
+
 
             if (response != null) {
                 Log.d("DangKyGoiKham", "Đăng ký thành công: " + response.toString());

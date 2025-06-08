@@ -51,6 +51,17 @@ public class chon_thong_tin_goi_kham extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         anhXa();
+        
+        // Khởi tạo ngày mặc định là hôm nay
+        Locale locale = new Locale("vi", "VN");
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd/MM/yyyy", locale);
+        String today = capitalizeFirstLetter(sdf.format(calendar.getTime()));
+        ngayChon.setText(today);
+        
+        // Khởi tạo giờ mặc định là 08:00 - 09:00
+        gioChon.setText("08:00 - 09:00");
+
         tvChonNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,11 +1,14 @@
 package com.example.madicalbooking;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.madicalbooking.adapter.ThongBaoAdapter;
 import com.example.madicalbooking.api.RetrofitClient;
 import com.example.madicalbooking.api.models.ThongBaoResponse;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ public class thong_bao extends AppCompatActivity {
     private ImageView btnBack;
     private ThongBaoAdapter adapter;
     private List<ThongBaoResponse> thongBaoList;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,41 @@ public class thong_bao extends AppCompatActivity {
 
         // Xử lý sự kiện click
         btnBack.setOnClickListener(v -> finish());
+
+        // Thiết lập bottom navigation
+        bottomNavigationView = findViewById(R.id.navView);
+        bottomNavigationView.setSelectedItemId(R.id.nav_thongbao);
+
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.nav_home) {
+                    Intent intent = new Intent(thong_bao.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_hoso) {
+                    Intent intent = new Intent(thong_bao.this, ho_so.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_phieukham) {
+                    Intent intent = new Intent(thong_bao.this, phieu_kham.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_thongbao) {
+                    return true;
+                } else if (itemId == R.id.nav_taikhoan) {
+                    Intent intent = new Intent(thong_bao.this, thong_tin_tai_khoan.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initViews() {

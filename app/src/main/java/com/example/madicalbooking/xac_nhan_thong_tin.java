@@ -109,7 +109,8 @@ public class xac_nhan_thong_tin extends AppCompatActivity {
     private void putInfomation() {
         Intent intent = new Intent(xac_nhan_thong_tin.this, thanh_toan.class);
         Intent intent1= getIntent();
-        goiKhamId=intent1.getIntExtra("goiKhamId", -1);
+        goiKhamId=intent1.getIntExtra("goiKhamid", -1);
+        System.out.println("goiKhamId XNTT: "+goiKhamId);
 
         intent.putExtra("dichVu", intent1.getStringExtra("dichVu"));
         if(intent1.getStringExtra("dichVu").equals("GoiKham")){
