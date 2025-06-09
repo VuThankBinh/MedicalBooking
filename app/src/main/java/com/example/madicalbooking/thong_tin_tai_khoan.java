@@ -8,13 +8,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.madicalbooking.api.ApiConfig;
 import com.example.madicalbooking.api.RetrofitClient;
 import com.example.madicalbooking.api.models.TokenResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -105,22 +109,34 @@ public class thong_tin_tai_khoan extends AppCompatActivity {
         if (token != null) {
             RetrofitClient.getInstance()
                     .getApi()
-                    .checkToken("Bearer " + token) // Sửa nếu cần
+                    .checkToken("Bearer " + token)
                     .enqueue(new Callback<TokenResponse>() {
                         @Override
                         public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
                             if (response.isSuccessful() && response.body() != null) {
-                                int id=response.body().getId();
+                                TokenResponse userData = response.body();
+                                Gson gson= new Gson();
+
+                                System.out.println("userData: " +gson.toJson(userData));
                                 TextView tvName = findViewById(R.id.tvName);
-                                tvName.setText(response.body().getHoTen());
-
-                            }
-                            // Sửa tại đây
-                            else {
+                                ImageView avatarImage = findViewById(R.id.avatarImage);
+                                
+                                // Cập nhật tên
+                                tvName.setText(userData.getHoTen());
+                                System.out.println("images: "+ApiConfig.Base_url + "uploads/images/" + userData.getAvatar());
+                                
+                                // Cập nhật avatar nếu có
+                                if (userData.getAvatar() != null && !userData.getAvatar().isEmpty()) {
+                                    // Sử dụng Glide hoặc Picasso để load ảnh từ URL
+                                    Glide.with(thong_tin_tai_khoan.this)
+                                        .load( ApiConfig.Base_url + "uploads/images/" + userData.getAvatar())
+                                        .placeholder(R.drawable.ic_tai_khoan)
+                                        .error(R.drawable.ic_tai_khoan)
+                                        .into(avatarImage);
+                                }
+                            } else {
                                 Toast.makeText(thong_tin_tai_khoan.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
-
                             }
-
                         }
 
                         @Override
@@ -129,5 +145,11 @@ public class thong_tin_tai_khoan extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUserData();
     }
 }

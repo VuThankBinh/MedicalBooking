@@ -57,6 +57,7 @@
 
                 <!-- Email -->
                 <EditText
+                    android:textColor="@color/black"
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -86,6 +87,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:background="@drawable/edittext_background"
                         android:layout_height="wrap_content"

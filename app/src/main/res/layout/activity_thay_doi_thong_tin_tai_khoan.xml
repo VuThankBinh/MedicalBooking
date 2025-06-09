@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".thay_doi_thong_tin_tai_khoan">
+    tools:context=".thay_doi_thong_tin_tai_khoan"
+    android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,6 +163,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"/>
     <EditText
+        android:enabled="false"
         android:id="@+id/ediEmail"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -185,6 +187,24 @@
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:hint="Nhập số điện thoại"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:background="@drawable/edittext_background" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Địa chỉ"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+    <EditText
+        android:id="@+id/edtDiaChi"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:hint="Nhập địa chỉ"
         android:textColor="@color/black"
         android:textSize="14dp"
         android:background="@drawable/edittext_background" />

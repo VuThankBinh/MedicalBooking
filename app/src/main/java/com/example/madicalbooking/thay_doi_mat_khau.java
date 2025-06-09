@@ -2,6 +2,7 @@ package com.example.madicalbooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -88,6 +89,11 @@ public class thay_doi_mat_khau extends AppCompatActivity {
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.code() == 200) {
                         Toast.makeText(thay_doi_mat_khau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(thay_doi_mat_khau.this, Dang_nhap.class);
+                        startActivity(intent);
                         finish();
                     } else {
                         String errorMessage = "Đổi mật khẩu thất bại";

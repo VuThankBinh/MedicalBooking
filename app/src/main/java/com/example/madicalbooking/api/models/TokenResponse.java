@@ -10,6 +10,7 @@ public class TokenResponse {
     private String gioiTinh;
     private String cccd;
     private String vaiTro;
+    private String avatar;
 
     public TokenResponse() {
     }
@@ -24,6 +25,14 @@ public class TokenResponse {
         this.gioiTinh = gioiTinh;
         this.cccd = cccd;
         this.vaiTro = vaiTro;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public int getId() {

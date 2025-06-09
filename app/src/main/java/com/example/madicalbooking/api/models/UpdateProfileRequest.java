@@ -7,14 +7,16 @@ public class UpdateProfileRequest {
     private String diaChi;
     private String ngaySinh;
     private String gioiTinh;
+    private String avatar;
 
-    public UpdateProfileRequest(int userId, String hoTen, String soDienThoai, String diaChi, String ngaySinh, String gioiTinh) {
+    public UpdateProfileRequest(int userId, String hoTen, String soDienThoai, String diaChi, String ngaySinh, String gioiTinh, String avatar) {
         this.userId = userId;
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;
         this.diaChi = diaChi;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
+        this.avatar = avatar;
     }
 
     public int getUserId() {
@@ -63,5 +65,13 @@ public class UpdateProfileRequest {
 
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 } 
